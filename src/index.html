@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>GRITHER - Игровое приложение</title>
+    <meta name="description" content="GRITHER - система достижений, баттлов и лидерборда" />
+    
+    <!-- Предзагрузка критических ресурсов -->
+    <link rel="preload" href="/styles/globals.css" as="style" />
+    
+    <!-- Оптимизация для мобильных устройств -->
+    <meta name="theme-color" content="#2B82FF" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <!-- Telegram Web App -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="GRITHER" />
+    <meta property="og:description" content="Игровое приложение с системой достижений и баттлов" />
+    <meta property="og:type" content="website" />
+    
+    <style>
+      /* Критические стили для предотвращения FOUC */
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        background: #12151B;
+        color: #E8ECF2;
+        overflow-x: hidden;
+      }
+      
+      /* Прелоадер */
+      #app-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, #12151B 0%, #0B0D10 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      
+      .loader-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(43, 130, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: #2B82FF;
+        animation: spin 1s ease-in-out infinite;
+      }
+      
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app-loader">
+      <div class="loader-spinner"></div>
+    </div>
+    
+    <div id="root"></div>
+    
+    <script>
+      // Убираем прелоадер после загрузки
+      window.addEventListener('load', function() {
+        const loader = document.getElementById('app-loader');
+        if (loader) {
+          setTimeout(() => {
+            loader.style.opacity = '0';
+            loader.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => loader.remove(), 500);
+          }, 1000);
+        }
+      });
+    </script>
+    
+    <script type="module" src="/main.tsx"></script>
+  </body>
+</html>

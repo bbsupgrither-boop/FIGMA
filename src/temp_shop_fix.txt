@@ -1,0 +1,17 @@
+Найти все вхождения:
+{(item.price * item.quantity).toLocaleString()}g
+
+И заменить на:
+<div className="flex items-center gap-1">
+  <span>{(item.price * item.quantity).toLocaleString()}</span>
+  <img src={coinIcon} alt="coins" className="w-3 h-3" />
+</div>
+
+Найти все вхождения:
+{order.total.toLocaleString()}g
+
+И заменить на:
+<div className="flex items-center gap-1">
+  <span>{order.total.toLocaleString()}</span>
+  <img src={coinIcon} alt="coins" className="w-4 h-4" />
+</div>
